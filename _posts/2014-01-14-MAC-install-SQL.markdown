@@ -4,7 +4,8 @@ title: MAC下安装与配置MySQL
 date: 2014-01-14 15:32:24.000000000 +09:00
 ---
 
-原味地址：http://www.cnblogs.com/macro-cheng/archive/2011/10/25/mysql-001.html
+原文地址：http://www.cnblogs.com/macro-cheng/archive/2011/10/25/mysql-001.html
+
 感谢MacroCheng
 
 ### 一 下载MySQL
