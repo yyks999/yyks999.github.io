@@ -2,6 +2,7 @@
 layout: post
 title: IOS即时通讯客户端开发之 － MAC上搭建Openfire服务器
 date: 2014-01-14 17:10:33.000000000 +08:00
+tags: 转载 & 收藏
 ---
 
 原文地址：http://www.cnblogs.com/xiaodao/archive/2013/04/05/3000554.html

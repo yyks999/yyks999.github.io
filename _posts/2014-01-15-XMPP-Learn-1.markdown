@@ -2,6 +2,7 @@
 layout: post
 title: XMPP学习笔记(一)
 date: 2014-01-15 15:18:07.000000000 +08:00
+tags: 转载 & 收藏
 ---
 
 原文地址：http://www.cnblogs.com/PhenixWang/p/3275454.html

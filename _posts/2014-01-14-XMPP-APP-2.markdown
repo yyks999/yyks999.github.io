@@ -2,6 +2,7 @@
 layout: post
 title: 基于XMPP的IOS聊天客户端程序(二)
 date: 2014-01-14 22:18:07.000000000 +08:00
+tags: 转载 & 收藏
 ---
 
 原文地址：http://blog.csdn.net/kangx6/article/details/7744304
