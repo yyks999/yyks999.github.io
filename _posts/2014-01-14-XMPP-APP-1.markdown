@@ -1,0 +1,228 @@
+---
+layout: post
+title: IOS即时通讯客户端开发之 － MAC上搭建Openfire服务器
+date: 2014-01-14 17:10:33.000000000 +09:00
+---
+
+原文地址：http://blog.csdn.net/kangx6/article/details/7740135
+
+感谢 kangkangz4
+
+
+#### 介绍完了服务器，这篇我们就要介绍重点了，写我们自己的IOS客户端程序
+
+#### 先看一下我们完成的效果图
+
+![](/assets/images/2014/20140114_2/1.png)
+![](/assets/images/2014/20140114_2/2.png)
+![](/assets/images/2014/20140114_2/3.png)
+
+首先下载xmppframework这个框架,[下载](http://vno.onevcat.com)
+
+![](/assets/images/2014/20140114_2/4.png)
+
+点击右边Download ZIP下载
+
+接下来，用Xcode新建一个工程
+
+将以下这些文件拖入新建工程中
+
+![](/assets/images/2014/20140114_2/5.png)
+![](/assets/images/2014/20140114_2/6.png)
+
+加入framework
+
+![](/assets/images/2014/20140114_2/7.png)
+
+并设置
+
+![](/assets/images/2014/20140114_2/8.png)
+
+到这里我们就全部设好了，跑一下试试，看有没有错呢
+
+如果没有错的话，我们的xmppframework就加入成功了。
+
+
+
+我们设置我们的页面如下图：
+
+![](/assets/images/2014/20140114_2/9.png)
+
+我们的KKViewController.h
+
+```bash
+#import <UIKit/UIKit.h>  
+  
+@interface KKViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>  
+  
+@property (strong, nonatomic) IBOutlet UITableView *tView;  
+  
+- (IBAction)Account:(id)sender;  
+@end 
+```
+
+KKViewController.m
+
+```bash
+#import "KKViewController.h"  
+  
+@interface KKViewController (){  
+      
+    //在线用户  
+    NSMutableArray *onlineUsers;  
+      
+}  
+  
+@end  
+  
+@implementation KKViewController  
+@synthesize tView;  
+  
+- (void)viewDidLoad  
+{  
+    [super viewDidLoad];  
+    self.tView.delegate = self;  
+    self.tView.dataSource = self;  
+      
+    onlineUsers = [NSMutableArray array];  
+    // Do any additional setup after loading the view, typically from a nib.  
+}  
+  
+- (void)viewDidUnload  
+{  
+    [self setTView:nil];  
+    [super viewDidUnload];  
+    // Release any retained subviews of the main view.  
+}  
+  
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation  
+{  
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);  
+}  
+  
+- (IBAction)Account:(id)sender {  
+}  
+  
+#pragma mark UITableViewDataSource  
+  
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{  
+      
+    return [onlineUsers count];  
+}  
+  
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{  
+      
+    static NSString *identifier = @"userCell";  
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];  
+    if (cell == nil) {  
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];  
+    }  
+      
+      
+    return cell;  
+      
+      
+}  
+  
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{  
+      
+    return 1;  
+}  
+  
+#pragma mark UITableViewDelegate  
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{  
+      
+      
+}  
+  
+  
+@end  
+```
+
+这里的代码相信大家学过UITableView的话应该很熟悉了，如果不知道的话，就查一下UITableView的简单应用学习一下吧
+
+### 接下来是登录的页面
+
+![](/assets/images/2014/20140114_2/10.png)
+
+KKLoginController.m
+
+
+```bash
+- (IBAction)LoginButton:(id)sender {  
+      
+    if ([self validateWithUser:userTextField.text andPass:passTextField.text andServer:serverTextField.text]) {  
+          
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];  
+        [defaults setObject:self.userTextField.text forKey:USERID];  
+        [defaults setObject:self.passTextField.text forKey:PASS];  
+        [defaults setObject:self.serverTextField.text forKey:SERVER];  
+        //保存  
+        [defaults synchronize];  
+          
+        [self dismissModalViewControllerAnimated:YES];  
+    }else {  
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入用户名，密码和服务器" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];  
+        [alert show];  
+    }  
+  
+}  
+  
+- (IBAction)closeButton:(id)sender {  
+      
+    [self dismissModalViewControllerAnimated:YES];  
+}  
+  
+-(BOOL)validateWithUser:(NSString *)userText andPass:(NSString *)passText andServer:(NSString *)serverText{  
+      
+    if (userText.length > 0 && passText.length > 0 && serverText.length > 0) {  
+        return YES;  
+    }  
+      
+    return NO;  
+}  
+```
+
+下面是聊天的页面
+
+![](/assets/images/2014/20140114_2/11.png)
+
+这里着重的还是UITableView
+
+KKChatController.m
+
+```bash
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{  
+      
+    return 1;  
+}  
+  
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{  
+    return [messages count];  
+}  
+  
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{  
+      
+    static NSString *identifier = @"msgCell";  
+      
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];  
+      
+    if (cell == nil) {  
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];  
+    }  
+      
+    NSMutableDictionary *dict = [messages objectAtIndex:indexPath.row];  
+      
+    cell.textLabel.text = [dict objectForKey:@"msg"];  
+    cell.detailTextLabel.text = [dict objectForKey:@"sender"];  
+    cell.accessoryType = UITableViewCellAccessoryNone;  
+      
+    return cell;  
+      
+}  
+```
+
+这些都比较简单，相信大家应该都能看得懂
+
+### 把这些都设置好以后，我们就要着重介绍XMPP了，怕太长了，接下一章吧。
+
