@@ -1,0 +1,151 @@
+---
+layout: post
+title: XMPP学习笔记(二)
+date: 2014-01-15 18:45:05.000000000 +08:00
+---
+
+原文地址：http://www.cnblogs.com/PhenixWang/p/3275537.html
+
+感谢 [dawn_wdf](http://www.cnblogs.com/PhenixWang/)
+
+
+#### 三：朋友列表  XEP-0083
+
+ 获得朋友列表，我们要使用花名册（roster）的方法
+
+添加
+
+![](/assets/images/2014/20140115_1/1.png)
+
+在setupStream方法中添加
+
+```bash
+xmppRosterStorage = [[XMPPRosterCoreDataStoragealloc]init];
+
+xmppRoster = [[XMPPRosteralloc]initWithRosterStorage:xmppRosterStorage];
+
+[xmppRosteractivate:self.xmppStream];
+
+[xmppRosteraddDelegate:selfdelegateQueue:dispatch_get_main_queue()];
+```
+
+再次运行后，会发现，xmppstream发送了
+
+```bash
+<iq type="get"><query xmlns="jabber:iq:roster"/></iq>
+```
+
+并收到
+
+```bash
+<iq xmlns="jabber:client" type="result" to="dawn@saas.kanyabao.com/XMPPIOS"><query xmlns="jabber:iq:roster"/></iq>
+```
+
+我查看了相应的0083的协议，发现基本符合。
+
+由于我们现在是一个新注册的用户，还没有好友，所以收到的IQ中没有朋友的列表的item.
+
+XMPPRosterCoreDataStorage这个类是用于用户保存的，在xmpp的官方框架中提供了两种存储好友列表的方法，这里使用coredata
+
+![](/assets/images/2014/20140115_1/2.png)
+
+添加新的viewcontroller 命名为FriendsListViewController继承于uitableviewcontroller
+
+添加添加好友的按钮和方法
+
+![](/assets/images/2014/20140115_1/3.png)
+
+在这里，我的好友的JID已经写死，实际应用中可以随意填写，此处看牙宝客服的客户端使用的是spark，
+
+点击这个按钮执行程序后，在spark中出现请求页面
+
+![](/assets/images/2014/20140115_1/4.png)
+
+![](/assets/images/2014/20140115_1/5.png)
+
+点击接收
+
+![](/assets/images/2014/20140115_1/6.png)
+
+如果打印出接收和发送的IQ，presence，这这个操作的过程中，ios的客户端和spark与openfire已经进行了一系列的沟通。
+
+我们最后接收到了出席信息
+
+```bash
+<presence xmlns="jabber:client" id="pju7P-6" from="看牙宝客服@saas.kanyabao.com/Spark 2.6.3" to="dawn@saas.kanyabao.com/XMPPIOS"><status>在线</status><priority>1</priority></presence>
+```
+
+-------------以上是iOS添加spark的过程---------------------------------------------
+
+如果是从spark向ios端发送添加好友的请求
+
+我们会收到如下信息
+
+```bash
+<presence xmlns="jabber:client" id="pju7P-49" to="dawn@saas.kanyabao.com" type="subscribe" from="&#x770B;&#x7259;&#x5B9D;&#x5BA2;&#x670D;@saas.kanyabao.com"/>
+```
+
+![](/assets/images/2014/20140115_1/7.png)
+
+推荐在- (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
+
+方法中接收添加好友信息的代码，方法多样，随君挑选！！
+
+![](/assets/images/2014/20140115_1/8.png)
+
+如果有添加好友的消息，则显示
+
+ 
+以下是接收请求的代码
+
+![](/assets/images/2014/20140115_1/9.png)
+
+拒绝的代码为rejectPresenceSubscriptionRequestFrom
+
+上文提到的用于保存朋友信息的XMPPRosterCoreDataStorage已经将信息保存下来了
+
+进入Library的文件夹内就能看到sqlite的数据库了
+
+![](/assets/images/2014/20140115_1/10.png)
+
+在展示朋友信息的页面中添加如下代码
+
+![](/assets/images/2014/20140115_1/11.png)
+
+这样就获得了所有朋友的信息
+
+![](/assets/images/2014/20140115_1/12.png)
+
+此时，数据已经全部获取到了，想怎么虐就怎么虐吧！
+
+![](/assets/images/2014/20140115_1/13.png)
+
+一个问题出现了，那就是好友状态，在这个页面中，如果好友状态更新，这个列表并不能即时的更新，所以现在添加即时更新的代码
+
+现添加代理ChatDelegate
+
+![](/assets/images/2014/20140115_1/14.png)
+
+![](/assets/images/2014/20140115_1/15.png)
+
+这样的方法是更改了当前页面的dataarray。
+
+其实这个时候数据库的数据已经改变了，但是必须要退出这个页面再进入才能看到改变，重新从数据库获取也不行，尚未找到其他更好的解决方法！！
+
+PS：在处理childAtIndex的时候最好做个判断，免得越界。
+
+
+删除好友
+
+```bash
+- (void)removeUser:(XMPPJID *)jid;
+```
+
+修改好友备注
+
+```bash
+- (void)setNickname:(NSString *)nickname forUser:(XMPPJID *)jid;
+```
+
+方法类似
+

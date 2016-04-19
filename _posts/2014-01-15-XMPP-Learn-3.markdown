@@ -1,0 +1,95 @@
+---
+layout: post
+title: XMPP学习笔记(三)
+date: 2014-01-15 22:41:31.000000000 +08:00
+---
+
+原文地址：http://www.cnblogs.com/PhenixWang/p/3277344.html
+
+感谢 [dawn_wdf](http://www.cnblogs.com/PhenixWang/)
+
+
+
+### 四：自动连接
+
+
+从当前代码来看，如果有意外的断开，我们将无法获取信息。
+
+所以要添加XMPPReconnect
+
+```bash
+xmppReconnect = [[XMPPReconnectalloc]init];
+
+[xmppReconnectactivate:self.xmppStream];
+```
+
+### 五：发送和接收消息 XEP-0136
+
+ 
+布置好自己的聊天页面，包括用来展示聊天记录的UITableView,和发送消息的按钮。
+
+发送消息代码如下：
+
+![](/assets/images/2014/20140115_2/1.png)
+
+接收消息：
+
+当有消息进来后，调用
+```bash
+- (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
+```
+方法
+
+ 
+xmpp的框架自有消息存储的功能，用法与朋友列表类似。
+
+![](/assets/images/2014/20140115_2/2.png)
+
+![](/assets/images/2014/20140115_2/3.png)
+
+发送消息后，查看文件夹，发现已经多了一个消息的数据库，所有的消息都存储在这里。
+
+![](/assets/images/2014/20140115_2/4.png)
+
+用类似朋友列表的方法取得了聊天信息的记录，包括时间、信息、接收人、发送或者接收信息的判断标志，信息到手，SM去吧！
+
+![](/assets/images/2014/20140115_2/5.png)
+
+依然是无法实时更新的问题，正在努力寻找合适的方法解决。
+
+ 
+
+语音聊天
+
+进行语音连天有两种方式：base64编码和Http
+
+http的方式是在消息中添加http的连接，如果用户要点击播放则去下载。
+
+base64则是将音频文件转换成base64，按照发送文本信息的模式发送，接收到后，进行解码。
+
+发送方法与文字发送一致。
+
+语音转换方式推荐：http://code4app.com/ios/%E5%BD%95%E9%9F%B3%E5%B9%B6AMR%E5%92%8CWAV%E4%BA%92%E8%BD%AC/51565c3e6803fa5c76000005
+
+![](/assets/images/2014/20140115_2/6.png)
+
+获取到信息之后，转码，保存，点击之后播放
+
+![](/assets/images/2014/20140115_2/7.png)
+
+音频部分需要真机运行!  ^·^
+
+
+
+
+
+
+
+
+
+
+
+
+```bash
+
+```

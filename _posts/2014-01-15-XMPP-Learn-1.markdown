@@ -1,0 +1,135 @@
+---
+layout: post
+title: XMPP学习笔记(一)
+date: 2014-01-15 15:18:07.000000000 +08:00
+---
+
+原文地址：http://www.cnblogs.com/PhenixWang/p/3275454.html
+
+感谢 [dawn_wdf](http://www.cnblogs.com/PhenixWang/)
+
+
+自己学习xmpp官方文档，慢慢整理的笔记，不见得都是正确的，请用选择性眼光看待，也有问题尚未解决，持续更新中~~~
+
+![](/assets/images/2014/20140115/1.png)
+
+创建新工程，命名为XMPPIOS.
+
+
+### 一：导入XMPPFramework
+
+![](/assets/images/2014/20140115/2.png)
+
+将XMPP拖拽到工程中。
+
+添加静态库
+
+![](/assets/images/2014/20140115/3.png)
+
+并在Build Settings中设置如下
+
+![](/assets/images/2014/20140115/4.png)
+
+此时Run一下，成功，证明导入正确。
+
+注意：XMPP使用了ARC，Edit -> Refactor -> convert to Objective-C ARC，转换。
+
+头文件也可以自己创建，内容是需要import的头文件，可以根据自己的需求来确定。
+
+------------------------------------------------可爱的分界线------------------------------------------------------------------
+
+ 
+### 二：连接和注册 XEP-0077  XEP-0020
+
+![](/assets/images/2014/20140115/5.png)
+
+拖拽相应控件到页面中。
+
+在appdelegate.h中创建相应属性
+
+![](/assets/images/2014/20140115/6.png)
+
+.m
+
+![](/assets/images/2014/20140115/7.png)
+ 
+这里创建xmpp的地方比官方的demo少了很多，主要是因为开始使用的时候个人认为并不用那么多变量，之后会一点一点添加。
+
+添加创建连接方法
+
+![](/assets/images/2014/20140115/8.png)
+
+创建连接成功后，两个代理方法调用，分别为
+
+- (void)xmppStreamWillConnect:(XMPPStream *)sender
+
+- (void)xmppStreamDidConnect:(XMPPStream *)sender
+
+此时添加注册的代码
+
+![](/assets/images/2014/20140115/9.png)
+
+如果注册成功，调用如下代理方法
+
+```bash
+- (void)xmppStreamDidRegister:(XMPPStream *)sender
+```
+
+现在看看后台openfire中已经存在注册的用户了。
+
+如果没有注册成功则调用
+
+```bash
+- (void)xmppStream:(XMPPStream *)sender didNotRegister:(NSXMLElement *)error
+```
+
+如果发现如下错误
+
+```bash
+<iq xmlns="jabber:client" type="error" to="saas.kanyabao.com/213e75ed"><query xmlns="jabber:iq:register"><username>dawn</username><password>1111</password></query><error code="409" type="cancel"><conflict xmlns="urn:ietf:params:xml:ns:xmpp-stanzas"/></error></iq>
+```
+
+则是因为当前的用户已经存在。
+
+然后在- (void)xmppStreamDidRegister:(XMPPStream *)sender
+
+![](/assets/images/2014/20140115/10.png)
+
+为当前用户做认证，如果认证成功，则调用
+
+```bash
+- (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
+```
+
+否则调用
+
+```bash
+- (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error
+```
+
+此时，当前用户已经与后台openfire连接，但是在openfire中，当前用的状态是未登录状态，所以此时，当前用户发送状态告知后台，这样其他的用户才能收到当前用户的上线通知。
+
+所以，在
+
+```bash
+- (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
+```
+
+方法中添加如下代码
+
+```bash
+XMPPPresence *presence = [XMPPPresencepresence];
+[[self xmppStream] sendElement:presence];
+```
+
+再次run，刷新open fire  发现当前用户的状态已经是上线了
+
+![](/assets/images/2014/20140115/11.png)
+
+
+注意：注册之前要创建连接，否则会报"Please wait until the stream is connected"的错误
+
+连接或者注册后需要做一次认证，并发送一个上线的消息，否则后台和其他用户都无法收到当前用户的上线消息，后台openfire中看到的当前用户是灰色的离线状态。
+
+注册之后如果要再次建立连接，最好断开后再创建，否则会报"Attempting to connect while already connected or connecting"的错误。
+
