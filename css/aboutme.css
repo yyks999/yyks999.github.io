@@ -367,7 +367,7 @@ a:focus {
     width: 900px;
     padding-bottom: 120px;
 
-    background-image: url(../assets/images/aboutMe.jpg);
+    background-image: url(/assets/images/aboutMe.jpg);
     background-position: bottom right;
     background-repeat: no-repeat;
 }
@@ -464,7 +464,7 @@ a:focus {
     width: 700px;
     padding-bottom: 400px;
 
-    background-image: url(../assets/images/favicon.png);
+    background-image: url(/assets/images/favicon.png);
     background-position: bottom right;
     background-repeat: no-repeat;
 }
