@@ -6,7 +6,7 @@ date: 2014-01-14 17:10:33.000000000 +09:00
 
 原文地址：http://www.cnblogs.com/xiaodao/archive/2013/04/05/3000554.html
 
-感谢 月光的尽头
+感谢 [月光的尽头](http://www.cnblogs.com/xiaodao/default.html)
 
 
 ### 一、下载并安装openfire

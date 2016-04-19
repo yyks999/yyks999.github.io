@@ -6,7 +6,7 @@ date: 2014-01-14 20:31:52.000000000 +09:00
 
 原文地址：http://blog.csdn.net/kangx6/article/details/7740135
 
-感谢 kangkangz4
+感谢 [kangkangz4](http://blog.csdn.net/kangx6)
 
 
 #### 介绍完了服务器，这篇我们就要介绍重点了，写我们自己的IOS客户端程序
