@@ -5,8 +5,8 @@ date: 2014-01-15 22:41:31.000000000 +08:00
 tags: 转载 & 收藏
 ---
 
-原文地址：http://www.cnblogs.com/PhenixWang/p/3277344.html
-感谢 [dawn_wdf](http://www.cnblogs.com/PhenixWang/)
+* 原文地址：http://www.cnblogs.com/PhenixWang/p/3277344.html
+* 感谢 [dawn_wdf](http://www.cnblogs.com/PhenixWang/)
 
 
 ### 四：自动连接
