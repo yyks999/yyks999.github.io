@@ -5,8 +5,8 @@ date: 2014-01-14 15:32:24.000000000 +08:00
 tags: 转载 & 收藏
 ---
 
-原文地址：http://www.cnblogs.com/macro-cheng/archive/2011/10/25/mysql-001.html\n
-感谢 [MacroCheng](http://www.cnblogs.com/macro-cheng/)
+* 原文地址：http://www.cnblogs.com/macro-cheng/archive/2011/10/25/mysql-001.html\n
+* 感谢 [MacroCheng](http://www.cnblogs.com/macro-cheng/)
 
 
 ### 一 下载MySQL

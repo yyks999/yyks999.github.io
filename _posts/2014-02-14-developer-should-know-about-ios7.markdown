@@ -5,8 +5,8 @@ date: 2014-02-14 00:45:02.000000000 +09:00
 tags: 转载 & 收藏
 ---
 
-原文地址：https://onevcat.com/2013/06/developer-should-know-about-ios7/
-感谢 [onevcat](https://onevcat.com/)
+* 原文地址：https://onevcat.com/2013/06/developer-should-know-about-ios7/
+* 感谢 [onevcat](https://onevcat.com/)
 
 
 ![](/assets/images/2014/20140214/1.png)

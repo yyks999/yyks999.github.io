@@ -5,8 +5,8 @@ date: 2014-01-15 18:45:05.000000000 +08:00
 tags: 转载 & 收藏
 ---
 
-原文地址：http://www.cnblogs.com/PhenixWang/p/3275537.html
-感谢 [dawn_wdf](http://www.cnblogs.com/PhenixWang/)
+* 原文地址：http://www.cnblogs.com/PhenixWang/p/3275537.html
+* 感谢 [dawn_wdf](http://www.cnblogs.com/PhenixWang/)
 
 
 ### 三：朋友列表  XEP-0083

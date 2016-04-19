@@ -5,8 +5,8 @@ date: 2014-01-14 22:18:07.000000000 +08:00
 tags: 转载 & 收藏
 ---
 
-原文地址：http://blog.csdn.net/kangx6/article/details/7750765
-感谢 [kangkangz4](http://blog.csdn.net/kangx6)
+* 原文地址：http://blog.csdn.net/kangx6/article/details/7750765
+* 感谢 [kangkangz4](http://blog.csdn.net/kangx6)
 
 
 #### 前两篇介绍了如何通过XMPP来发送消息和接收消息，这一篇我们主要介绍如何来美化我们的聊天程序，看一下最终效果呢，当然源程序也会在最后放出

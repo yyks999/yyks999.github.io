@@ -5,8 +5,8 @@ date: 2014-01-15 15:18:07.000000000 +08:00
 tags: 转载 & 收藏
 ---
 
-原文地址：http://www.cnblogs.com/PhenixWang/p/3275454.html
-感谢 [dawn_wdf](http://www.cnblogs.com/PhenixWang/)
+* 原文地址：http://www.cnblogs.com/PhenixWang/p/3275454.html
+* 感谢 [dawn_wdf](http://www.cnblogs.com/PhenixWang/)
 
 
 自己学习xmpp官方文档，慢慢整理的笔记，不见得都是正确的，请用选择性眼光看待，也有问题尚未解决，持续更新中~~~

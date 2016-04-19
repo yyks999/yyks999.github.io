@@ -5,8 +5,8 @@ date: 2014-02-07 10:15:33.000000000 +08:00
 tags: 转载 & 收藏
 ---
 
-原文地址：http://www.cnblogs.com/wengzilin/p/3441116.html
-感谢 [编程小翁](http://www.cnblogs.com/wengzilin/)
+* 原文地址：http://www.cnblogs.com/wengzilin/p/3441116.html
+* 感谢 [编程小翁](http://www.cnblogs.com/wengzilin/)
 
 
 ### 理论上之后的XCode版本也可以通过这种方法破解

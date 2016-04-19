@@ -5,8 +5,8 @@ date: 2014-01-14 22:18:07.000000000 +08:00
 tags: 转载 & 收藏
 ---
 
-原文地址：http://blog.csdn.net/kangx6/article/details/7744304
-感谢 [kangkangz4](http://blog.csdn.net/kangx6)
+* 原文地址：http://blog.csdn.net/kangx6/article/details/7744304
+* 感谢 [kangkangz4](http://blog.csdn.net/kangx6)
 
 
 #### 上一章的，这一章我们着重介绍XMPP
