@@ -6,7 +6,6 @@ tags: 转载 & 收藏
 ---
 
 原文地址：http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/
-
 感谢 [唐巧](http://blog.devtang.com/)
 
 

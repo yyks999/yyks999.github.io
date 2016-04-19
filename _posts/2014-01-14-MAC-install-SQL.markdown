@@ -6,8 +6,8 @@ tags: 转载 & 收藏
 ---
 
 原文地址：http://www.cnblogs.com/macro-cheng/archive/2011/10/25/mysql-001.html
-
 感谢 [MacroCheng](http://www.cnblogs.com/macro-cheng/)
+
 
 ### 一 下载MySQL
 

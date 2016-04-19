@@ -6,9 +6,7 @@ tags: 转载 & 收藏
 ---
 
 原文地址：http://blog.csdn.net/happysheepherder/article/details/4707124
-
 感谢 [happysheepherder](http://www.cnblogs.com/wengzilin/)
-
 
 
 如果你的服务器名称和mysql的地址都是使用的静态ip地址配置的，更改ip后，openfire就会开启失败，这种情况下请看下面的解决方法。
