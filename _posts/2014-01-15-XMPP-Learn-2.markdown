@@ -9,7 +9,7 @@ date: 2014-01-15 18:45:05.000000000 +08:00
 感谢 [dawn_wdf](http://www.cnblogs.com/PhenixWang/)
 
 
-#### 三：朋友列表  XEP-0083
+### 三：朋友列表  XEP-0083
 
  获得朋友列表，我们要使用花名册（roster）的方法
 
