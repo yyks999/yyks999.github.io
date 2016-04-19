@@ -1,7 +1,7 @@
 ---
 layout: post
-title: IOS即时通讯客户端开发之 － MAC上搭建Openfire服务器
-date: 2014-01-14 17:10:33.000000000 +09:00
+title: 基于XMPP的IOS聊天客户端程序(一)
+date: 2014-01-14 20:31:52.000000000 +09:00
 ---
 
 原文地址：http://blog.csdn.net/kangx6/article/details/7740135
@@ -17,7 +17,7 @@ date: 2014-01-14 17:10:33.000000000 +09:00
 ![](/assets/images/2014/20140114_2/2.png)
 ![](/assets/images/2014/20140114_2/3.png)
 
-首先下载xmppframework这个框架,[下载](http://vno.onevcat.com)
+首先下载xmppframework这个框架,[下载](https://github.com/robbiehanson/XMPPFramework)
 
 ![](/assets/images/2014/20140114_2/4.png)
 
