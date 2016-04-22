@@ -1,0 +1,24 @@
+---
+layout: post
+title: iTunes更新或恢复固件3014错误的解决方法
+date: 2014-02-20 14:21:55.000000000 +08:00
+tags: 问题 & 原创
+---
+
+### Windows系统解决方法参考这里：http://jingyan.baidu.com/article/02027811aa9dcc1bcc9ce53a.html
+
+### Mac系统解决方法：
+
+hosts文件路径 ： /etc/hosts
+
+打开hosts文件，将内容全部更下如下：
+
+w##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting. Do not change this entry.
+##
+127.0.0.1 localhost
+
+若提示无权限修改，将文件复制出来修改完再粘贴回去即可，粘贴回去可能要求输入本机密码。

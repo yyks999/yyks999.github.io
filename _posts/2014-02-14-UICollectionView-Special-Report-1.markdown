@@ -5,7 +5,7 @@ date: 2014-02-14 11:21:43.000000000 +08:00
 tags: 转载 & 收藏
 ---
 
-* 原文地址：https://onevcat.com/2012/06/introducing-collection-views/?t=123
+* 原文地址：https://onevcat.com/2012/06/introducing-collection-views
 * 感谢 [onevcat](https://onevcat.com/)
 
 
