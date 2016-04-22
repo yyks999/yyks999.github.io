@@ -1,6 +1,6 @@
 ---
 layout: post
-title: XCode5.0.2免证书真机调试（通用）
+title: UICollectionView专题
 date: 2014-02-14 11:21:43.000000000 +08:00
 tags: 转载 & 收藏
 ---
