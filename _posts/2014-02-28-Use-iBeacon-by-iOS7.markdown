@@ -53,7 +53,7 @@ beacon广播的是什么？它是一个UUID，类似：C293726B-63BF-420A-9D79-9
 
 把两个按钮图片保存至文件系统，并把“BroadcastBtn@2x.png”和“BroadcastBtn.png”分别拖至2x spot和1x spot.
 
-![](/assets/images/2014/20140228_1/6.jpg)
+![](/assets/images/2014/20140228_1/6.png)
 
 在Main.storyboard中，为了添加一个UIButton按钮，我们需要把其中一个从右下角的Objects pane中拖至视图上。
 
