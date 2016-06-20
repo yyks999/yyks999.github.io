@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Cocoapods 常见问题解决方案
+title: Cocoapods iOS中文乱码 ASIHttprequest 转码
 date: 2014-03-27 14:31:51.000000000 +08:00
 tags: 问题 & 原创
 ---

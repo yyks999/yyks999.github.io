@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Cocoapods 常见问题解决方案
+title: Cocoapods 使用CocoaPods之后的头文件包含问题
 date: 2014-03-11 10:25:38.000000000 +08:00
 tags: 问题 & 原创
 ---
